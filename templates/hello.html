@@ -1,0 +1,5 @@
+{% if user_ip %}
+    <h1> Hello world, your IP is {{ user_ip }} !!!</h1>
+{% else %}
+    <a href="{{ url_for('index') }}">Ir al inicio</a>
+{% endif %}
