@@ -1,9 +1,10 @@
 from flask import Flask, request, make_response, redirect, render_template # Importamos desde flask, la clase Flask para realizar nuevas instancias
 
-
 app = Flask(__name__) # Nueva instancia de Flask, donde le tenemos que pasar el nombre de nuestra aplicación, que en este caso seria main.py
+app.config['DEBUG'] = True
 
-todos = ['Todo1','Todo2','Todo3']
+
+todos = ['Estudiar','Estudiar estructuras de datos','Desarrollar tesis']
 
 
 @app.route('/')
@@ -24,3 +25,7 @@ def hello_world():
     }
 
     return render_template('hello.html', **context)
+
+
+if __name__ == '__main__':
+    app.run(debug=True) # Activar debug 
