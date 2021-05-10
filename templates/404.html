@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} 
+    Error 404
+{% endblock  %}
+
+{% block content  %}
+
+    <header class="header"></header>
+
+    <section class="main">
+        <div class="main__404">
+            <img class="main__404--img" src="{{ url_for('static', filename='images/astronaut.png') }}" alt="">
+            <div class="main__404-description">
+                <h1 class="main__404--title">404</h1>
+                <p class="main__404--paragraph">Page not found</p>
+                <a class="main__404--a" href="#">Back to home</a>
+            </div>        
+        </div>
+    </section>
+
+    <footer class="footer">
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Statement</a>
+        <a href="#">Help Center</a>
+    </footer>
+{% endblock %}

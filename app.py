@@ -8,6 +8,11 @@ app = Flask(__name__) # Nueva instancia de Flask, donde le tenemos que pasar el 
 todos = ['Estudiar','Estudiar estructuras de datos','Desarrollar tesis']
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
+
 @app.route('/')
 def index():
     user_ip = request.remote_addr

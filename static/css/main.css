@@ -2,6 +2,91 @@ html {
     font-family: sans-serif;
 }
 
-img {
+ul img {
     max-width: 30px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', sans-serif;
+}
+
+.header {
+    background-color: #21C08B;
+    width: 100%;
+    height: 10%;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.header__img {
+    width: 50px;
+    margin-left: 20px;
+    /* margin-top: 1.4%; */
+    padding-top: 10px; 
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#21C08B,#8F57FD);
+    min-height: calc(100vh - 125px);
+
+    width: 100%;
+    
+}
+
+.main__404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main__404--title{
+    font-size: 130px;
+    color: white;
+}
+
+.main__404--paragraph {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.main__404--a {
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    background-color:rgba(255,255,255,0.1);
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+
+}
+
+.footer {
+    background-color: #8F57FD;
+    display: flex;
+    align-items: center;
+    min-height: 65px;
+    width: 100%;
+    /* flex-wrap:wrap; */ /* Se le puede agregar en vez del media query*/
+}
+
+.footer a {
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 30px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
