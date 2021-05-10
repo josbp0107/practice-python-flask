@@ -1,8 +1,8 @@
 from flask import Flask, request, make_response, redirect, render_template # Importamos desde flask, la clase Flask para realizar nuevas instancias
-
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__) # Nueva instancia de Flask, donde le tenemos que pasar el nombre de nuestra aplicación, que en este caso seria main.py
-
+bootstrap = Bootstrap(app) # Tenemos accesos de css y js de bootstrap
 
 todos = ['Estudiar','Estudiar estructuras de datos','Desarrollar tesis']
 
