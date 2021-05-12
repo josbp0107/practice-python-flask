@@ -1,5 +1,8 @@
 from flask import Flask, request, make_response, redirect, render_template, session # Importamos desde flask, la clase Flask para realizar nuevas instancias
 from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms.fields import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__) # Nueva instancia de Flask, donde le tenemos que pasar el nombre de nuestra aplicación, que en este caso seria main.py
 bootstrap = Bootstrap(app) # Tenemos accesos de css y js de bootstrap
@@ -8,6 +11,12 @@ app.config['ENV'] = 'development'
 app.config['SECRET_KEY'] = 'SUPER SECRETO' # Nos ayuda a generar nuestra llave secreta 
 
 todos = ['Estudiar','Estudiar estructuras de datos','Desarrollar tesis']
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Nombre de usuario', validators=[DataRequired()]) # Inicializamos instancia de DataRequired
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Enviar')
 
 
 @app.errorhandler(404)
@@ -29,11 +38,13 @@ def index():
     return response
 
 @app.route('/hello') # route recive como parametro la ruta donde queramos que se corra esta función
-def hello_world():
+def hello():
     user_ip = session.get('user_ip')
+    login_form = LoginForm()
     context = {
         'user_ip': user_ip,
         'todos': todos,
+        'login_form':login_form
     }
 
     return render_template('hello.html', **context)

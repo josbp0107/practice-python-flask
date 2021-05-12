@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %} <!-- Import de bootstrap y su template de wtf -->
 
 <!-- Super clase de base -->
 {% block title %}
@@ -10,6 +11,18 @@
 {% block content  %}
     {% if user_ip %}
         <h1> Hello world, your IP is {{ user_ip }} !!!</h1>
+        <div class="container">
+            <!-- # En el action, se pasa la ruta que en este caso seria hello -->
+            <form action="{{ url_for('hello') }}" method="POST">
+                {{ login_form.username.label }} <!-- Se pasa el label -->
+                {{ login_form.username(class="form-control", placeholder="Nombre de usuario") }}  <!-- Se pasa el field o input -->
+                {{ login_form.password.label }}
+                {{ login_form.password }} 
+                {{ login_form.submit }}
+                {{ wtf.quick_form(login_form) }} <!-- Para hacer uso de template de bootstrap-->
+            </form>
+        </div>
+        
         <ul>
             {% for todo in todos %}
                 {{ macros.render_todo(todo) }}
@@ -18,6 +31,7 @@
     {% else %}
         <a href="{{ url_for('index') }}">Ir al inicio</a>
     {% endif %}
+
     
 {% endblock  %}
 
