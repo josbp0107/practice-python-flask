@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect, render_template, session # Importamos desde flask, la clase Flask para realizar nuevas instancias
+from flask import Flask, request, make_response, redirect, render_template, session, url_for # Importamos desde flask, la clase Flask para realizar nuevas instancias
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
@@ -37,15 +37,22 @@ def index():
 
     return response
 
-@app.route('/hello') # route recive como parametro la ruta donde queramos que se corra esta función
+@app.route('/hello', methods=['GET', 'POST']) # route recive como parametro la ruta donde queramos que se corra esta función
 def hello():
     user_ip = session.get('user_ip')
     login_form = LoginForm()
+    username = session.get('username') # se agrega a la session el username para poder manipularlo
     context = {
         'user_ip': user_ip,
         'todos': todos,
-        'login_form':login_form
+        'login_form':login_form,
+        'username': username
     }
+
+    if login_form.validate_on_submit(): # Detecta que se mando un post y validará el form
+        username = login_form.username.data
+        session['username'] = username
+        return redirect(url_for('index')) # necesario primero importar url_for
 
     return render_template('hello.html', **context)
 
