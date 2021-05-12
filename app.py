@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+import unittest
 
 app = Flask(__name__) # Nueva instancia de Flask, donde le tenemos que pasar el nombre de nuestra aplicación, que en este caso seria main.py
 bootstrap = Bootstrap(app) # Tenemos accesos de css y js de bootstrap
@@ -17,6 +18,12 @@ class LoginForm(FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()]) # Inicializamos instancia de DataRequired
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Enviar')
+
+# Ejecutar test por medio de la linea de comando
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
 
 
 @app.errorhandler(404)
