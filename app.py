@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect, render_template, session, url_for # Importamos desde flask, la clase Flask para realizar nuevas instancias
+from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash # Importamos desde flask, la clase Flask para realizar nuevas instancias
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
@@ -52,7 +52,9 @@ def hello():
     if login_form.validate_on_submit(): # Detecta que se mando un post y validará el form
         username = login_form.username.data
         session['username'] = username
+        flash('Nombre de usuario registrado exitosamente!')
         return redirect(url_for('index')) # necesario primero importar url_for
+
 
     return render_template('hello.html', **context)
 
