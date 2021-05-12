@@ -9,16 +9,20 @@
 {% endblock  %}
 
 {% block content  %}
+    {% if username %}
+        <h1>Bienvenido, {{ username |capitalize }}</h1> <!-- Utilizando filtros -->
+    {% endif %}
+
     {% if user_ip %}
-        <h1> Hello world, your IP is {{ user_ip }} !!!</h1>
+        <h3> Hello world, your IP is {{ user_ip }} !!!</h3>
         <div class="container">
             <!-- # En el action, se pasa la ruta que en este caso seria hello -->
             <form action="{{ url_for('hello') }}" method="POST">
-                {{ login_form.username.label }} <!-- Se pasa el label -->
-                {{ login_form.username(class="form-control", placeholder="Nombre de usuario") }}  <!-- Se pasa el field o input -->
+                <!-- {{ login_form.username.label }}  Se pasa el label 
+                {{ login_form.username(class="form-control", placeholder="Nombre de usuario") }}   Se pasa el field o input 
                 {{ login_form.password.label }}
                 {{ login_form.password }} 
-                {{ login_form.submit }}
+                {{ login_form.submit }} -->
                 {{ wtf.quick_form(login_form) }} <!-- Para hacer uso de template de bootstrap-->
             </form>
         </div>
